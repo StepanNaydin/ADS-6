@@ -7,16 +7,17 @@
 template <typename T, int size>
 
 struct TPQueue{
-private:
+ private:
     T arr[size];
     int first = 0, last = 0, count = 0;
 
-public:
+ public:
     void push(const T& sum) {
         if (count == size) {
             throw std::string("Full!");
         } else {
-            if (count == 0 || arr[last + 1].prior == 0 && arr[last-1].prior >= sum.prior) {
+            if (count == 0 || arr[last + 1].prior == 0
+            && arr[last-1].prior >= sum.prior) {
                 arr[last % size].ch = sum.ch;
                 arr[last % size].prior = sum.prior;
             }
@@ -38,9 +39,6 @@ public:
                 }
             }
             last++;
-            if (last == size) {
-                last = 0;
-            }
             count++;
         }
     }
@@ -48,16 +46,15 @@ public:
         if (count == 0) {
             throw std::string("Empty!");
         }
-        if (first == size) {
-            first = 0;
-        }
+        T qwe = arr[(first % size)];
+        arr[(first % size)].ch = '0';
+        arr[(first++ % size)].prior = 0;
         count--;
-        return arr[(first++ % size)];
+        return qwe;
     }
 };
 
 struct SYM {
-    SYM(char ch = '0', int prior = 0) : ch(ch), prior(prior) {}
     char ch;
     int prior;
 };
