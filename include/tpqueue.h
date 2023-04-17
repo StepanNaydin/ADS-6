@@ -12,14 +12,17 @@ private:
 public:
     void push(const T& sum) {
         if (count == size) {
-            std::cout << "Full!" << std::endl;
+            throw std::string("Full!");
         } else {
+            if (count == 0 || arr[last + 1].prior == 0 && arr[last-1].prior >= sum.prior) {
+                arr[last % size].ch = sum.ch;
+                arr[last % size].prior = sum.prior;
+            }
             if (count == 0 || arr[last + 1].prior == 0
             && arr[last].prior >= sum.prior) {
                 arr[last % size].ch = sum.ch;
                 arr[last % size].prior = sum.prior;
-            }
-            else {
+            } else {
                 for (int q = first; q < last; ++q) {
                     if (arr[q].prior <= sum.prior) {
                         for (int w = last; w > q; --w) {
@@ -41,17 +44,13 @@ public:
     }
     const T& pop() {
         if (count == 0) {
-            std::cout << "Empty!" << std::endl;
+            throw std::string("Empty!");
         } else {
-            T z = arr[(first % size)];
-            arr[(first % size)].ch = '0';
-            arr[(first % size)].prior = 0;
-            first++;
             if (first == size) {
                 first = 0;
             }
             count--;
-            return z;
+            return arr[(first++ % size)];
         }
     }
 };
