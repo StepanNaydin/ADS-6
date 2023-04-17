@@ -25,11 +25,6 @@ struct TPQueue{
             throw std::string("Full!");
         } else {
             if (count == 0 || arr[last + 1].prior == 0
-            && arr[last-1].prior >= sum.prior) {
-                arr[last % size].ch = sum.ch;
-                arr[last % size].prior = sum.prior;
-            }
-            if (count == 0 || arr[last + 1].prior == 0
             && arr[last].prior >= sum.prior) {
                 arr[last % size].ch = sum.ch;
                 arr[last % size].prior = sum.prior;
