@@ -14,6 +14,13 @@ struct TPQueue{
  public:
     TPQueue() : first(0), last(0), count(0) { arr = new T[size]; }
     void push(const T& sum) {
+        if (count == 0) {
+            for (int q = 0; q < size; ++q) {
+                arr[q].ch = '0';
+                arr[q].prior = 0;
+                first = 0, last = 0, count = 0;
+            }
+        }
         if (count == size) {
             throw std::string("Full!");
         } else {
