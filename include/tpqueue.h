@@ -47,11 +47,8 @@ struct TPQueue{
         if (count == 0) {
             throw std::string("Empty!");
         }
-        T qwe = arr[(first % size)];
-        arr[(first % size)].ch = '0';
-        arr[(first++ % size)].prior = 0;
         count--;
-        return qwe;
+        return arr[(first++ % size)];
     }
 };
 
