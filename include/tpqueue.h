@@ -1,6 +1,8 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
+#include <iostream>
+#include <string>
 
 template <typename T, int size>
 
@@ -45,13 +47,12 @@ public:
     const T& pop() {
         if (count == 0) {
             throw std::string("Empty!");
-        } else {
-            if (first == size) {
-                first = 0;
-            }
-            count--;
-            return arr[(first++ % size)];
         }
+        if (first == size) {
+            first = 0;
+        }
+        count--;
+        return arr[(first++ % size)];
     }
 };
 
