@@ -12,7 +12,7 @@ struct TPQueue{
     int first, last, count;
 
  public:
-    TPQueue() : first(0), last(0), count(0) { arr = new T[size]; }
+    TPQueue() : first(0), last(0), count(0) { arr = new T[15]; }
     void push(const T& sum) {
         if (count == 0) {
             for (int q = 0; q < size; ++q) {
